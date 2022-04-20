@@ -42,7 +42,7 @@ public class ExperienceModel : PageModel
                 skills.Add(skill);
             }
 
-            graph.Skills = skills;
+            graph.Data = skills;
             Graphs.Add(graph);
         }
 
