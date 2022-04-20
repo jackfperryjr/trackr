@@ -1,0 +1,44 @@
+@page "{characterName}"
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+@model ExperienceModel
+@{
+    var serializerSettings = new JsonSerializerSettings { ContractResolver = new DefaultContractResolver { NamingStrategy = new CamelCaseNamingStrategy() }};
+    ViewData["Title"] = "Experience";
+}
+
+<h1 class="text-center" style="color:#5865F2;">@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model.Character.Name) 
+    <a href="/update/@Model.Character.Name"><span class="btn btn-success" style="float: right;">Update</span></a>
+</h1>
+<div id="app" v-cloak class="text-center" style="margin:0 auto;">
+    <br/>
+    <div class="row">
+        <div v-for="g in graphs" class="col-sm-4 col-md-4" style="background-color:#202225;margin:0;padding:2px;border:solid 6px #36393F;border-radius:4px;">
+            <h5 class="text-center">{{ g.name }}</h5>
+            <br/>
+            <line-chart :data="g.skills" :colors="['#5865F2']" :legend="false" :curve="true" xtitle="Date" ytitle="Ranks" :legend="true"></line-chart>
+        </div>
+    </div>
+</div>
+
+<div id="character" data-obj="@JsonConvert.SerializeObject(Model.Character, serializerSettings)"></div>
+<div id="graphs" data-obj="@JsonConvert.SerializeObject(Model.Graphs, serializerSettings)"></div>
+<script src="https://unpkg.com/vue@2"></script>
+<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+<script src="https://unpkg.com/vue-chartkick@0.6.1"></script>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            character: JSON.parse(document.getElementById('character').dataset.obj),
+            graphs: JSON.parse(document.getElementById('graphs').dataset.obj)
+        },
+        filters: {
+            capitalising: function (data) {
+                return data.charAt(0).toUpperCase() + data.slice(1)
+            }
+        }
+    })
+    app.use(VueChartkick)
+    app.mount("#app")
+</script>

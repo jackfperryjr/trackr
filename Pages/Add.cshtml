@@ -1,0 +1,74 @@
+@page
+@model AddModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Add";
+}
+
+<div class="text-center">
+    <h1 class="display-4" style="font-weight:bolder;color:#5865F2;"><span style="color:#fff;">Adding a</span> New Character</h1>
+</div>
+<br>
+<form method="post">
+    <div class="card card-outline-secondary" style="background-color:#2F3136!important;">
+        <div class="card-header">
+            <h3 class="mb-0 text-center"></h3>
+        </div>
+        <div class="card-body">
+            <div class="row mt-4">
+                <div class="col-sm-3">
+                    <label for="name">Name</label> 
+                    <input asp-for="Character.Name" class="form-control" id="name" type="text" />
+                    <label for="guild">Guild</label> 
+                    <select asp-for="Character.Guild" class="form-control" id="guild" size="0">
+                        <option value="">Select...</option>
+                        <option value="barbarian">barbarian</option>
+                        <option value="bard">bard</option>
+                        <option value="cleric">cleric</option>
+                        <option value="commoner">commoner</option>
+                        <option value="empath">empath</option>
+                        <option value="moon mage">moon mage</option>
+                        <option value="necromancer">necromancer</option>
+                        <option value="paladin">paladin</option>
+                        <option value="ranger">ranger</option>
+                        <option value="thief">thief</option>
+                        <option value="trader">trader</option>
+                        <option value="warrior mage">warrior mage</option>
+                    </select>
+                    <label for="circle">Circle</label> 
+                    <input asp-for="Character.Circle" class="form-control" id="circle" type="number" />
+                    <label for="race">Race</label> 
+                    <select asp-for="Character.Race" class="form-control" id="race" size="0">
+                        <option value="">Select...</option>
+                        <option value="dwarf">dwarf</option>
+                        <option value="elf">elf</option>
+                        <option value="elothean">elothean</option>
+                        <option value="gnome">gnome</option>
+                        <option value="gor'tog">gor'tog</option>
+                        <option value="halfling">halfling</option>
+                        <option value="human">human</option>
+                        <option value="kaldar">kaldar</option>
+                        <option value="prydaen">prydaen</option>
+                        <option value="rakash">rakash</option>
+                        <option value="s'kra mur">s'kra mur</option>
+                    </select>
+                    <label for="gender">Gender</label> 
+                    <select asp-for="Character.Gender" class="form-control" id="guild" size="0">
+                        <option value="">Select...</option>
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                    </select>
+                </div>
+                <div class="col-md-9">
+                    <label for="exp">Paste skills/ranks from EXP all</label> 
+                    <textarea asp-for="expString" class="form-control" id="exp" rows="11"></textarea> 
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div>
+                <input class="btn btn-success" type="submit" value="Submit" style="background-color:#198754!important;float:right;" />
+            </div>
+        </div>
+    </div>
+</form>

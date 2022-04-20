@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@using System.Web
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4" style="font-weight:bolder;color:#5865F2;"><span style="color:#fff;">EXP</span> Tracker
+        <a href="/add"><span class="btn btn-success" style="float: right;">Add</span></a>
+    </h1>
+</div>
+<br/>
+<div class="row">
+    @foreach(var x in Model.Characters)
+    {
+    <div class="col-sm-3 col-md-3 mb-4">
+        <a href="/experience/@x.Name" style="text-decoration:none;">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5>@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Name)</h5>
+                    <div style="text-align:left;">
+                    Guild: @( x.Guild != null ? @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Guild) : "n/a" )<br/>
+                    Circle: @x.Circle<br/>
+                    Race: @( x.Race != null ? @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Race) : "n/a" )<br/>
+                    Gender: @( x.Gender != null ? @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Gender) : "n/a" )<br/>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    }
+</div>
