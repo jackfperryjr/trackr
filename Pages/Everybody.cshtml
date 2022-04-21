@@ -8,13 +8,16 @@
 }
 
 <h1 class="text-center" style="color:#5865F2;">Everybody</h1>
-<div id="app" v-cloak class="text-center" style="margin:0 auto;">
-    <br/>
+<div id="app" class="text-center" style="margin:0 auto;">
     <div class="row">
         <div v-for="g in graphs" class="col-sm-10 col-md-10" style="background-color:#202225;margin:0;padding:2px;border:solid 6px #36393F;border-radius:4px;margin:0 auto;">
-            <h5 class="text-center">{{ g.name }}</h5>
+            <h5 class="text-center">{{ g.name }} - {{ g.guild }}</h5>
             <br/>
-            <line-chart :data="g.graphs" :legend="false" :curve="true" xtitle="Date" ytitle="Ranks" :legend="true" height="500px"></line-chart>
+            <line-chart :data="g.graphs" :colors="['#FFB74D','#FFA726','#FF9800','#FB8C00','#F57C00','#EF6C00',
+        '#FFEBEE','#FFCDD2','#EF9A9A','#E57373','#FF8A80','#FF5252','#FF1744','#D50000','#EC407A','#E91E63','#D81B60','#F50057','#EF5350','#F44336','#E53935','#D32F2F','#C62828','#B71C1C',
+        '#6200EA','#651FFF','#7C4DFF','#B388FF','#311B92','#4527A0','#512DA8','#5E35B1','#673AB7',
+        '#00C853','#00E676','#69F0AE','#B9F6CA','#1B5E20','#2E7D32','#388E3C','#43A047','#4CAF50','#66BB6A',
+        '#FFD600','#FFEA00','#FFFF00','#FFFF8D','#FDD835','#FFEB3B','#FFEE58','#FFF176','#FFF59D']" :legend="false" :curve="true" xtitle="Date" ytitle="Ranks" height="500px"></line-chart>
         </div>
     </div>
 </div>

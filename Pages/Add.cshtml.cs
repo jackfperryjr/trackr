@@ -1,12 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Strago.Data;
 using Strago.Models;
 using Strago.Extensions;
-
 namespace Strago.Pages;
 
 public class AddModel : PageModel
@@ -59,7 +55,7 @@ public class AddModel : PageModel
             _context.Skills.AddRange(skills);
         }
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return RedirectToPage("./experience", new { characterName = Character.Name });
     }
 }

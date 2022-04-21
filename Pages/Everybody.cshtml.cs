@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Strago.Data;
 using Strago.Models;
-
 namespace Strago.Pages;
 
 public class EverybodyModel : PageModel
@@ -52,10 +51,10 @@ public class EverybodyModel : PageModel
             }
 
             master.Name = c.Name;
+            master.Guild = c.Guild;
+            master.Circle = c.Circle;
             master.Graphs = charGraphs;
             Graphs.Add(master);
         }
-
-        var pause = "pause";
     }
 }

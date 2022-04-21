@@ -1,18 +1,14 @@
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Strago.Data;
 using Strago.Models;
-
 namespace Strago.Pages;
 
 public class ExperienceModel : PageModel
 {
     private readonly ILogger<ExperienceModel> _logger;
     private readonly StragoDbContext _context;
-    public Character? Character { get; set; }
+    public Character Character { get; set; }
     public List<Graph> Graphs { get; set; } = new List<Graph>();
 
     public ExperienceModel(ILogger<ExperienceModel> logger, StragoDbContext context)
@@ -45,7 +41,5 @@ public class ExperienceModel : PageModel
             graph.Data = skills;
             Graphs.Add(graph);
         }
-
-        var pause = "pause";
     }
 }
