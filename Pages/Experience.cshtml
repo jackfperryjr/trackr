@@ -4,7 +4,7 @@
 @model ExperienceModel
 @{
     var serializerSettings = new JsonSerializerSettings { ContractResolver = new DefaultContractResolver { NamingStrategy = new CamelCaseNamingStrategy() }};
-    ViewData["Title"] = "Experience";
+    ViewData["Title"] = @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model.Character.Name);
 }
 
 <h1 class="text-center" style="color:#5865F2;">@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model.Character.Name) 

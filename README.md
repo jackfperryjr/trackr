@@ -1,9 +1,10 @@
-# EXP tracking application
+# trackr
 
 <img src="screenshots/Screenshot 2022-04-20 120620.png" alt="Main Page" title="Main Page">
 <img src="screenshots/Screenshot 2022-04-20 120644.png" alt="Character Graphs" title="Character Graphs">
 <img src="screenshots/Screenshot 2022-04-20 130054.png" alt="Character Update" title="Character Update">
 <img src="screenshots/Screenshot 2022-04-20 130118.png" alt="Character Add" title="Character Add">
+<img src="screenshots/Screenshot 2022-04-20 130119.png" alt="Character All" title="Character All">
 
 If you wanted to use this application to track your own DragonRealms character's experience progressions you'll need to complete a few things first:  
 

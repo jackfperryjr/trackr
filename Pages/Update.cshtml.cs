@@ -13,6 +13,8 @@ public class UpdateModel : PageModel
     [BindProperty]
     public Character Character { get; set; }
     [BindProperty]
+    public string Date { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
+    [BindProperty]
     public string expString { get; set; }
 
     public UpdateModel(ILogger<UpdateModel> logger, StragoDbContext context)
@@ -26,7 +28,7 @@ public class UpdateModel : PageModel
         Character = _context.Characters
                                     .Where(x => x.Name == characterName)
                                     .Include(x => x.Experience)
-                                    .ThenInclude(x => x.Skills)
+                                    .ThenInclude(x => x.Skills.OrderByDescending(y => y.DateLogged))
                                     .FirstOrDefault();
     }
 
@@ -47,7 +49,7 @@ public class UpdateModel : PageModel
                     skill.ExperienceId = experience.Id;
                     skill.Name = exp.Split(":")[0];
                     skill.Rank = Int32.Parse(exp.Split(":")[1]);
-                    skill.DateLogged = DateTime.Now.ToString("yyyy-MM-dd");
+                    skill.DateLogged = Date;
                     skills.Add(skill);
                 }
             }

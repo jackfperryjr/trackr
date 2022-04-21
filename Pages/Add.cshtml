@@ -58,11 +58,14 @@
                         <option value="male">male</option>
                         <option value="female">female</option>
                     </select>
+                    <label for="date">Date</label>
+                    <input asp-for="Date" class="form-control" id="date" type="text" />
                 </div>
                 <div class="col-md-9">
                     <label for="exp">Paste skills/ranks from EXP all</label> 
-                    <textarea asp-for="expString" class="form-control" id="exp" rows="11"></textarea> 
+                    <textarea asp-for="expString" class="form-control" id="exp" rows="14"></textarea> 
                 </div>
+                <small style="margin-top:10px;">The date can be changed to backdate experience data points.</small>
             </div>
         </div>
         <div class="card-footer">

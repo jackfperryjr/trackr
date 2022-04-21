@@ -12,6 +12,8 @@ public class AddModel : PageModel
     [BindProperty]
     public Character Character { get; set; }
     [BindProperty]
+    public string Date { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
+    [BindProperty]
     public string expString { get; set; }
 
     public AddModel(ILogger<AddModel> logger, StragoDbContext context)
@@ -47,7 +49,7 @@ public class AddModel : PageModel
                     skill.ExperienceId = experience.Id;
                     skill.Name = exp.Split(":")[0];
                     skill.Rank = Int32.Parse(exp.Split(":")[1]);
-                    skill.DateLogged = DateTime.Now.ToString("yyyy-MM-dd");
+                    skill.DateLogged = Date;
                     skills.Add(skill);
                 }
             }

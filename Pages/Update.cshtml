@@ -28,11 +28,14 @@
                     <input asp-for="Character.Race" class="form-control" id="race" type="text" value="@Model.Character.Race" />
                     <label for="gender">Gender</label> 
                     <input asp-for="Character.Gender" class="form-control" id="gender" type="text" value="@Model.Character.Gender" />
+                    <label for="date">Date</label> 
+                    <input asp-for="Date" class="form-control" id="date" type="text" value="@Model.Date" />
                 </div>
                 <div class="col-md-9">
                     <label for="exp">Paste skills/ranks from EXP all</label> 
-                    <textarea asp-for="expString" class="form-control" id="exp" rows="11"></textarea> 
+                    <textarea asp-for="expString" class="form-control" id="exp" rows="14"></textarea> 
                 </div>
+                <small style="margin-top:10px;">The date can be changed to backdate experience data points.</small>
             </div>
         </div>
         <div class="card-footer">

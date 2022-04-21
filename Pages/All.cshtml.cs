@@ -7,14 +7,14 @@ using Strago.Data;
 using Strago.Models;
 namespace Strago.Pages;
 
-public class EverybodyModel : PageModel
+public class AllModel : PageModel
 {
-    private readonly ILogger<EverybodyModel> _logger;
+    private readonly ILogger<AllModel> _logger;
     private readonly StragoDbContext _context;
     public List<Character> Characters { get; set; } = new List<Character>();
     public List<MasterGraph> Graphs { get; set; } = new List<MasterGraph>();
 
-    public EverybodyModel(ILogger<EverybodyModel> logger, StragoDbContext context)
+    public AllModel(ILogger<AllModel> logger, StragoDbContext context)
     {
         _logger = logger;
         _context = context;
