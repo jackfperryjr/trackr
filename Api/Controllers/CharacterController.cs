@@ -1,10 +1,10 @@
 #nullable disable
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Strago.Data;
-using Strago.Models;
-using Strago.Extensions;
-namespace Strago.Api.Controllers;
+using trackr.Data;
+using trackr.Models;
+using trackr.Extensions;
+namespace trackr.Api.Controllers;
 
 [Route("api")]
 [ApiController]
@@ -17,6 +17,10 @@ public class CharacterController : ControllerBase
         _context = context;
     }
 
+    /// <summary>
+    /// Gets all of the tracked characters and experience.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
     {
@@ -25,6 +29,11 @@ public class CharacterController : ControllerBase
                                 .ThenInclude(x => x.Skills).ToListAsync();
     }
 
+    /// <summary>
+    /// Gets a specific character and experience by name.
+    /// </summary>
+    /// <param name="characterName"></param>
+    /// <returns></returns>
     [HttpGet("{characterName}")]
     public async Task<ActionResult<Character>> GetCharacter(string characterName)
     {
@@ -41,6 +50,13 @@ public class CharacterController : ControllerBase
         return character;
     }
 
+    /// <summary>
+    /// Updates a specific character and experience by name.
+    /// </summary>
+    /// <param name="characterName"></param>
+    /// <param name="expString"></param>
+    /// <param name="date"></param>
+    /// <returns></returns>
     [HttpPut("{characterName}")]
     public async Task<IActionResult> PutCharacter([FromBody] string expString, string characterName, string date)
     {
@@ -87,6 +103,13 @@ public class CharacterController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Adds a specific character and experience by name.
+    /// </summary>
+    /// <param name="characterName"></param>
+    /// <param name="expString"></param>
+    /// <param name="date"></param>
+    /// <returns></returns>
     [HttpPost("{characterName}")]
     public async Task<ActionResult<string>> PostCharacter([FromBody] string expString, string characterName, string date)
     {    
@@ -141,6 +164,11 @@ public class CharacterController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Deletes a specific character and experience by name.
+    /// </summary>
+    /// <param name="characterName"></param>
+    /// <returns></returns>
     [HttpDelete("{characterName}")]
     public async Task<IActionResult> DeleteCharacter(string characterName)
     {

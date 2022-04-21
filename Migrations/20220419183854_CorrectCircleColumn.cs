@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Strago.Migrations
+namespace trackr.Migrations
 {
     public partial class CorrectCircleColumn : Migration
     {

@@ -1,5 +1,5 @@
 #nullable disable
-namespace Strago.Models;
+namespace trackr.Models;
 public class Character
 {
     public int Id { get; set; }

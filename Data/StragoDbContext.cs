@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Strago.Models;
-namespace Strago.Data;
+using trackr.Models;
+namespace trackr.Data;
 public class StragoDbContext : DbContext
 {
     public StragoDbContext(DbContextOptions<StragoDbContext> options)

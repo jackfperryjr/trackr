@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Strago.Data;
-using Strago.Models;
-using Strago.Extensions;
-namespace Strago.Pages;
+using trackr.Data;
+using trackr.Models;
+using trackr.Extensions;
+namespace trackr.Pages;
 
 public class AddModel : PageModel
 {

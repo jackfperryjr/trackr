@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-namespace Strago.Extensions;
+namespace trackr.Extensions;
 public class ApplicationExtensions
 {
     public static string[] GetExpArray(string expString)

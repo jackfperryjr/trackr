@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Strago.Data;
+using trackr.Data;
 
 #nullable disable
 
-namespace Strago.Migrations
+namespace trackr.Migrations
 {
     [DbContext(typeof(StragoDbContext))]
     [Migration("20220419152239_AddPropsToCharacter")]
@@ -23,7 +23,7 @@ namespace Strago.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Strago.Models.Character", b =>
+            modelBuilder.Entity("trackr.Models.Character", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace Strago.Migrations
                     b.ToTable("Characters");
                 });
 
-            modelBuilder.Entity("Strago.Models.Experience", b =>
+            modelBuilder.Entity("trackr.Models.Experience", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace Strago.Migrations
                     b.ToTable("Experience");
                 });
 
-            modelBuilder.Entity("Strago.Models.Skill", b =>
+            modelBuilder.Entity("trackr.Models.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,31 +97,31 @@ namespace Strago.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("Strago.Models.Experience", b =>
+            modelBuilder.Entity("trackr.Models.Experience", b =>
                 {
-                    b.HasOne("Strago.Models.Character", null)
+                    b.HasOne("trackr.Models.Character", null)
                         .WithOne("Experience")
-                        .HasForeignKey("Strago.Models.Experience", "CharacterId")
+                        .HasForeignKey("trackr.Models.Experience", "CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Strago.Models.Skill", b =>
+            modelBuilder.Entity("trackr.Models.Skill", b =>
                 {
-                    b.HasOne("Strago.Models.Experience", null)
+                    b.HasOne("trackr.Models.Experience", null)
                         .WithMany("Skills")
                         .HasForeignKey("ExperienceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Strago.Models.Character", b =>
+            modelBuilder.Entity("trackr.Models.Character", b =>
                 {
                     b.Navigation("Experience")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Strago.Models.Experience", b =>
+            modelBuilder.Entity("trackr.Models.Experience", b =>
                 {
                     b.Navigation("Skills");
                 });

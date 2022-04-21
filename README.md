@@ -43,5 +43,5 @@ In addition to the forms to add/update characters and their experience, there's 
 - Additionally, if you need to backdate experience you can add a query parameter of `date` to the same PUT request. Otherwise, the current date is used.
 <img src="screenshots/Screenshot 2022-04-20 125849.png" alt="Postman Character" title="Postman Character">
 
-
+There are also GET and DELETE endpoints following a similar pattern. You can navigate to `https://localhost:<port>/swagger` when the app is running.
 

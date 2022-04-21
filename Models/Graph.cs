@@ -1,5 +1,5 @@
 #nullable disable
-namespace Strago.Models;
+namespace trackr.Models;
 public class Graph
 {
     public string Name { get; set; }
