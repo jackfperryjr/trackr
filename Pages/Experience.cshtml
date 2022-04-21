@@ -13,7 +13,7 @@
 <div id="app" v-cloak class="text-center" style="margin:0 auto;">
     <br/>
     <div class="row">
-        <div v-for="g in graphs" class="col-sm-4 col-md-4" style="background-color:#202225;margin:0;padding:2px;border:solid 6px #36393F;border-radius:4px;">
+        <div v-for="g in graphs" class="col-sm-6 col-md-6" style="background-color:#202225;margin:0;padding:2px;border:solid 6px #36393F;border-radius:4px;">
             <h5 class="text-center">{{ g.name }}</h5>
             <br/>
             <line-chart :data="g.data" :colors="['#5865F2']" :legend="false" :curve="true" xtitle="Date" ytitle="Ranks" :legend="true"></line-chart>
