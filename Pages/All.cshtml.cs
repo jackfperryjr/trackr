@@ -10,11 +10,11 @@ namespace trackr.Pages;
 public class AllModel : PageModel
 {
     private readonly ILogger<AllModel> _logger;
-    private readonly StragoDbContext _context;
+    private readonly trackrDbContext _context;
     public List<Character> Characters { get; set; } = new List<Character>();
     public List<MasterGraph> Graphs { get; set; } = new List<MasterGraph>();
 
-    public AllModel(ILogger<AllModel> logger, StragoDbContext context)
+    public AllModel(ILogger<AllModel> logger, trackrDbContext context)
     {
         _logger = logger;
         _context = context;
@@ -24,7 +24,8 @@ public class AllModel : PageModel
     {
         Characters = _context.Characters
                             .Include(x => x.Experience)
-                            .ThenInclude(x => x.Skills)
+                            .ThenInclude(x => x.Skills.OrderBy(x => x.CategoryId))
+                            .OrderByDescending(x => x.Circle)
                             .ToList();
         
         foreach(var c in Characters)
@@ -34,9 +35,25 @@ public class AllModel : PageModel
 
             foreach(var x in c.Experience.Skills.DistinctBy(i => i.Name))
             {
+                var color = "#5865F2";
+                switch (x.CategoryId)
+                {
+                    case 1: color = "#fd7e14";
+                    break;
+                    case 2: color = "#dc3545";
+                    break;
+                    case 3: color = "#6610f2";
+                    break;
+                    case 4: color = "#198754";
+                    break;
+                    case 5: color = "#ffc107";
+                    break;
+                }
                 Graph graph = new Graph();
                 List<List<string>> skills = new List<List<string>>();
                 graph.Name = x.Name;
+                graph.Color = color;
+                graph.CategoryId = x.CategoryId;
 
                 foreach(var y in c.Experience.Skills.Where(i => i.Name == x.Name))
                 {

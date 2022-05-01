@@ -5,27 +5,159 @@
     ViewData["Title"] = "Home";
 }
 
-<div class=" row text-center">
-    <h1><a href="/add"><span class="btn btn-success" style="float: right;">Add</span></a></h1>
-</div>
 <br/>
 <div class="row">
-    @foreach(var x in Model.Characters)
+    @if(Model.Characters.Any())
     {
-    <div class="col-sm-4 col-md-4 mb-4">
-        <a href="/experience/@x.Name" style="text-decoration:none;">
-            <div class="card">
-                <div class="card-body text-center">
-                    <h5>@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Name)</h5>
-                    <div style="text-align:left;">
-                    Guild: @( x.Guild != null ? @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Guild) : "n/a" )<br/>
-                    Circle: @x.Circle<br/>
-                    Race: @( x.Race != null ? @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Race) : "n/a" )<br/>
-                    Gender: @( x.Gender != null ? @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Gender) : "n/a" )<br/>
+        @foreach(var x in Model.Characters)
+        {
+        <div class="col-sm-4 col-md-4 mb-4">
+            <a href="/experience/@x.Name" style="text-decoration:none;">
+                <div class="card no-drag">
+                    <div class="card-body text-center">
+                        <h5>@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Name)</h5>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                        @if (x.Guild == "cleric")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_cleric.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_cleric.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "trader")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_trader.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_trader.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "moon mage" || x.Guild == "warrior mage")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_mage.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_mage.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "empath")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_empath.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_empath.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "bard")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_bard.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_bard.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "barbarian")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_barbarian.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_barbarian.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "necromancer")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_necromancer.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_necromancer.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "thief")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_thief.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_thief.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "paladin")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_paladin.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_paladin.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "ranger")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_ranger.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_ranger.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        @if (x.Guild == "commoner")
+                        {
+                            @if (x.Gender == "male")
+                            {
+                                <img src="/avatars/male_commoner.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                            @if (x.Gender == "female")
+                            {
+                                <img src="/avatars/female_commoner.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+                            }
+                        }
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div style="text-align:right;">
+                            @( x.Guild != null ? @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Guild) : "n/a" )<br/>
+                            Circle @x.Circle<br/>
+                            @( x.Race != null ? @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Race) : "n/a" )<br/>
+                            @( x.Gender != null ? @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.Gender) : "n/a" )<br/>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
+        }
     }
+    else 
+    {
+        <h3 class="text-center">You're not tracking anyone yet. Click Add to get started!</h3>
+    }
+    
 </div>

@@ -7,4 +7,5 @@ public class Skill
     public string Name { get; set; }
     public int Rank { get; set; }
     public string DateLogged { get; set; }
+    public int CategoryId { get; set; }
 }

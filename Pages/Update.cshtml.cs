@@ -9,7 +9,7 @@ namespace trackr.Pages;
 public class UpdateModel : PageModel
 {
     private readonly ILogger<UpdateModel> _logger;
-    private readonly StragoDbContext _context;
+    private readonly trackrDbContext _context;
     [BindProperty]
     public Character Character { get; set; }
     [BindProperty]
@@ -17,7 +17,7 @@ public class UpdateModel : PageModel
     [BindProperty]
     public string expString { get; set; }
 
-    public UpdateModel(ILogger<UpdateModel> logger, StragoDbContext context)
+    public UpdateModel(ILogger<UpdateModel> logger, trackrDbContext context)
     {
         _logger = logger;
         _context = context;
@@ -45,11 +45,14 @@ public class UpdateModel : PageModel
             {
                 if (exp.Length > 0)
                 {
+                    var name = exp.Split(":")[0];
+                    var rank = Int32.Parse(exp.Split(":")[1]);
                     Skill skill = new Skill();
                     skill.ExperienceId = experience.Id;
-                    skill.Name = exp.Split(":")[0];
-                    skill.Rank = Int32.Parse(exp.Split(":")[1]);
+                    skill.Name = name;
+                    skill.Rank = rank;
                     skill.DateLogged = Date;
+                    skill.CategoryId = ApplicationExtensions.GetCategoryId(name);
                     skills.Add(skill);
                 }
             }

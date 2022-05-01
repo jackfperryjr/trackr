@@ -7,36 +7,66 @@
     ViewData["Title"] = "All";
 }
 
-<div id="app" class="text-center" style="margin:0 auto;">
-    <div class="row">
-        <div v-for="g in graphs" class="col-sm-12 col-md-12" style="background-color:#202225;margin:0;padding:2px;border:solid 6px #36393F;border-radius:4px;margin:0 auto;">
-            <a style="text-decoration:none;color:#fff;" :href="`experience/${g.name}`">
-            <h5 class="text-center">{{ g.name }} - {{ g.guild }}</h5>
-            <br/>
-            <line-chart :data="g.graphs" :colors="['#FFB74D','#FFA726','#FF9800','#FB8C00','#F57C00','#EF6C00',
-        '#FFEBEE','#FFCDD2','#EF9A9A','#E57373','#FF8A80','#FF5252','#FF1744','#D50000','#EC407A','#E91E63','#D81B60','#F50057','#EF5350','#F44336','#E53935','#D32F2F','#C62828','#B71C1C',
-        '#6200EA','#651FFF','#7C4DFF','#B388FF','#311B92','#4527A0','#512DA8','#5E35B1','#673AB7',
-        '#00C853','#00E676','#69F0AE','#B9F6CA','#1B5E20','#2E7D32','#388E3C','#43A047','#4CAF50','#66BB6A',
-        '#FFD600','#FFEA00','#FFFF00','#FFFF8D','#FDD835','#FFEB3B','#FFEE58','#FFF176','#FFF59D']" :legend="false" :curve="true" xtitle="Date" ytitle="Ranks" height="500px"></line-chart>
-            </a>
+@if(Model.Graphs.Any())
+{
+    <div id="loading" class="text-center" style="margin-top:40px;">Getting some coffee. Be right back...</div>
+    <div id="app" class="text-center" style="margin:0 auto;display:none;">
+        <div style="width:70%;margin: 10px auto!important;">
+            <input v-model="search" class="form-control" placeholder="Filter to character...">
+        </div>
+        <div class="row">
+            <div v-for="g in filteredGraphs" class="col-sm-12 col-md-12" style="background-color:#202225;margin:0;padding:2px;border:solid 6px #36393F;border-radius:4px;margin:0 auto;">
+                <a style="text-decoration:none;color:#fff;" :href="`experience/${g.name}`">
+                <h5 class="no-drag text-center">{{ g.name }} - {{ g.circle }} {{ g.guild }}</h5>
+                <br/>
+                <line-chart :data="g.graphs" :colors="[g.graphs.color]" :legend="false" :curve="true" xtitle="Date" ytitle="Ranks" height="500px"></line-chart>
+                </a>
+            </div>
         </div>
     </div>
-</div>
+}
+else 
+{
+    <br>
+    <h3 class="text-center">You're not tracking anyone yet. Click Add to get started!</h3>
+}
 
 <div id="graphs" data-obj="@JsonConvert.SerializeObject(Model.Graphs, serializerSettings)"></div>
-<script src="https://unpkg.com/vue@2"></script>
-<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
-<script src="https://unpkg.com/vue-chartkick@0.6.1"></script>
+<script src="~/lib/vuejs/vue.js"></script>
+<script src="~/lib/chartjs/chart.js"></script>
+<script src="~/lib/vue-chartkick/chartkick.js"></script>
 <script type="text/javascript">
     var app = new Vue({
         el: '#app',
         data: {
-            graphs: JSON.parse(document.getElementById('graphs').dataset.obj)
+            graphs: JSON.parse(document.getElementById('graphs').dataset.obj),
+            search: '',
+            loaded: false
         },
         filters: {
             capitalising: function (data) {
                 return data.charAt(0).toUpperCase() + data.slice(1)
             }
+        },
+        computed: {
+            filteredGraphs: function () {
+                return this.graphs
+                .filter(this.filterByName)
+            }
+        },
+        methods: {
+            filterByName: function (graph) {
+                if (this.search.length === 0) {
+                    return true
+                }
+
+                return (graph.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1)
+            }
+        },
+        mounted() {
+            this.loaded = true
+            document.getElementById('loading').style.display = 'none'
+            document.getElementById('app').style.display = 'block'
         }
     })
     app.use(VueChartkick)

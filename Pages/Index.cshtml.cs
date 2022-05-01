@@ -7,10 +7,10 @@ namespace trackr.Pages;
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
-    private readonly StragoDbContext _context;
+    private readonly trackrDbContext _context;
     public List<Character> Characters { get; set; } = new List<Character>();
 
-    public IndexModel(ILogger<IndexModel> logger, StragoDbContext context)
+    public IndexModel(ILogger<IndexModel> logger, trackrDbContext context)
     {
         _logger = logger;
         _context = context;

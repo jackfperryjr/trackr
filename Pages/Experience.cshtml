@@ -7,36 +7,194 @@
     ViewData["Title"] = @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model.Character.Name);
 }
 
-<h1 class="text-center" style="color:#5865F2;">@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model.Character.Name) 
-    <a href="/update/@Model.Character.Name"><span class="btn btn-success" style="float: right;">Update</span></a>
+<h1 class="text-center" style="color:#5865F2;margin-bottom:20px;">
+    @if (Model.Character.Guild == "cleric")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_cleric.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_cleric.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    @if (Model.Character.Guild == "trader")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_trader.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_trader.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    @if (Model.Character.Guild == "moon mage" || Model.Character.Guild == "warrior mage")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_mage.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_mage.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    @if (Model.Character.Guild == "empath")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_empath.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_empath.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    @if (Model.Character.Guild == "bard")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_bard.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_bard.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    @if (Model.Character.Guild == "barbarian")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_barbarian.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_barbarian.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    @if (Model.Character.Guild == "necromancer")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_necromancer.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_necromancer.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    @if (Model.Character.Guild == "thief")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_thief.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_thief.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    @if (Model.Character.Guild == "paladin")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_paladin.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_paladin.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    @if (Model.Character.Guild == "ranger")
+    {
+        @if (Model.Character.Gender == "male")
+        {
+            <img src="/avatars/male_ranger.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+        @if (Model.Character.Gender == "female")
+        {
+            <img src="/avatars/female_ranger.png" style="width:50px;height:50px;border-radius:50%;object-fit:cover;float:left;" />
+        }
+    }
+    <span style="float:left;margin-left:10px;">@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model.Character.Name) </span>
+    <a href="/update/@Model.Character.Name"><span class="btn btn-success" style="float: right;margin-left:10px;">Update</span></a>
+    <form method="post">
+        <button type="submit" class="btn btn-danger" style="float: right;">Delete</button>
+    </form>
 </h1>
-<div id="app" v-cloak class="text-center" style="margin:0 auto;">
+<div id="loading" class="text-center" style="margin-top:40px;">Getting some coffee. Be right back...</div>
+<div id="app" v-cloak class="text-center" style="margin:10px auto;display:none;">
     <br/>
-    <div class="row">
-        <div v-for="g in graphs" class="col-sm-6 col-md-6" style="background-color:#202225;margin:0;padding:2px;border:solid 6px #36393F;border-radius:4px;">
+    <div style="width:70%;margin:30px auto!important;">
+        <input v-model="search" class="form-control" placeholder="Filter to skill or skill group..." style="margin-top:50px;">
+    </div>
+    <div id="graphs" v-if="loaded" class="row">
+        <div v-for="g in filteredGraphs" class="col-sm-6 col-md-6" style="background-color:#202225;margin:0;padding:2px;border:solid 6px #36393F;border-radius:4px;">
             <h5 class="text-center">{{ g.name }}</h5>
             <br/>
-            <line-chart :data="g.data" :colors="['#5865F2']" :legend="false" :curve="true" xtitle="Date" ytitle="Ranks" :legend="true"></line-chart>
+            <line-chart :data="g.data" :colors="[g.color]" :legend="false" :curve="true" xtitle="Date" ytitle="Ranks" :legend="true"></line-chart>
         </div>
     </div>
 </div>
 
-<div id="character" data-obj="@JsonConvert.SerializeObject(Model.Character, serializerSettings)"></div>
-<div id="graphs" data-obj="@JsonConvert.SerializeObject(Model.Graphs, serializerSettings)"></div>
-<script src="https://unpkg.com/vue@2"></script>
-<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
-<script src="https://unpkg.com/vue-chartkick@0.6.1"></script>
+<div id="character" data-obj="@JsonConvert.SerializeObject(Model.Character, serializerSettings)" style="display:none;"></div>
+<div id="graphs" data-obj="@JsonConvert.SerializeObject(Model.Graphs, serializerSettings)" style="display:none;"></div>
+<script src="~/lib/vuejs/vue.js"></script>
+<script src="~/lib/chartjs/chart.js"></script>
+<script src="~/lib/vue-chartkick/chartkick.js"></script>
 <script type="text/javascript">
     var app = new Vue({
         el: '#app',
         data: {
-            character: JSON.parse(document.getElementById('character').dataset.obj),
-            graphs: JSON.parse(document.getElementById('graphs').dataset.obj)
+            character: null,
+            graphs: null,
+            search: '',
+            loaded: false
         },
         filters: {
             capitalising: function (data) {
                 return data.charAt(0).toUpperCase() + data.slice(1)
             }
+        },
+        computed: {
+            filteredGraphs: function () {
+                if (this.graphs.filter(this.filterByCategoryType).length == 0) {
+                    return this.graphs.filter(this.filterByName)
+                } else {
+                    return this.graphs.filter(this.filterByCategoryType)
+                }
+            }
+        },
+        methods: {
+            getCharacter: function () {
+                this.character = JSON.parse(document.getElementById('character').dataset.obj)
+                this.getGraphs()
+            },
+            getGraphs: function () {
+                this.graphs = JSON.parse(document.getElementById('graphs').dataset.obj)
+                this.loaded = true
+                document.getElementById('loading').style.display = 'none'
+                document.getElementById('app').style.display = 'block'
+            },
+            filterByName: function (graph) {
+                if (this.search.length === 0) {
+                    return true
+                }
+
+                return (graph.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1)
+            },
+            filterByCategoryType: function (graph) {
+                if (this.search.length === 0) {
+                    return true
+                }
+
+                return (graph.category.toLowerCase().indexOf(this.search.toLowerCase()) > -1)
+            }
+        },
+          mounted(){
+            this.getCharacter()
         }
     })
     app.use(VueChartkick)

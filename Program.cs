@@ -1,51 +1,27 @@
-using System.Reflection;
+using ElectronNET.API;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using trackr.Data;
-
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<StragoDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
-);
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
+namespace trackr;
+public class Program
 {
-    options.SwaggerDoc("v1", new OpenApiInfo
+    public static void Main(string[] args)
     {
-        Version = "v1",
-        Title = "trackr API",
-        Description = "A .NET6 Web API for managing DragonRealms character experience progression.",
-        Contact = new OpenApiContact
+        var host = CreateHostBuilder(args).Build();
+
+        using (var scope = host.Services.CreateScope())
         {
-            Name = "Jack Perry, Jr.",
-            Url = new Uri("https://github.com/jackfperryjr")
+            var db = scope.ServiceProvider.GetRequiredService<trackrDbContext>();
+            db.Database.Migrate();
         }
-    });
+        
+        host.Run();
+    }
 
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
-});
-builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-builder.Services.AddRouting(options => options.LowercaseUrls = true);
-
-var app = builder.Build();
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+                webBuilder.UseElectron(args);
+            });
 }
-
-app.UseSwagger();
-app.UseSwaggerUI();
-// app.UseSwaggerUI(options =>
-// {
-//     options.InjectStylesheet("/swagger-ui/custom.css");
-// });
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
-app.UseAuthorization();
-app.MapRazorPages();
-app.MapControllers();
-app.Run();
