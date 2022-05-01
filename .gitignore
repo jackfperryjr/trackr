@@ -8,6 +8,9 @@ images/*
 
 .DS_Store
 
+# Electron.NET
+electron.manifest.json
+
 # User-specific files
 *.suo
 *.user
