@@ -64,19 +64,4 @@ public class ExperienceModel : PageModel
             Graphs.Add(graph);
         }
     }
-
-    public async Task<IActionResult> OnPostAsync(string characterName)
-    {
-        Character = _context.Characters
-                        .Include(x => x.Experience)
-                        .ThenInclude(x => x.Skills.OrderBy(x => x.CategoryId))
-                        .Where(x => x.Name == characterName).FirstOrDefault();
-
-        _context.Skills.RemoveRange(Character.Experience.Skills);
-        _context.Experience.Remove(Character.Experience);
-        _context.Characters.Remove(Character);
-        await _context.SaveChangesAsync();
-
-        return RedirectToPage("/index");
-    }
 }

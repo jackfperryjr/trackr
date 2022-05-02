@@ -120,9 +120,7 @@
     }
     <span style="float:left;margin-left:10px;">@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model.Character.Name) </span>
     <a href="/update/@Model.Character.Name"><span class="btn btn-success" style="float: right;margin-left:10px;">Update</span></a>
-    <form method="post">
-        <button type="submit" class="btn btn-danger" style="float: right;">Delete</button>
-    </form>
+    <a class="btn btn-danger no-drag" style="float: right;" href="/delete/@Model.Character.Name">Delete</a>
 </h1>
 <div id="loading" class="text-center" style="margin-top:40px;">Getting some coffee. Be right back...</div>
 <div id="app" v-cloak class="text-center" style="margin:10px auto;display:none;">
