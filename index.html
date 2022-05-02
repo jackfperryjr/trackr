@@ -87,7 +87,7 @@
             let href = this.getAttribute('href')
             let a = document.createElement('a')
             a.setAttribute('href', href)
-            a.setAttribute('download') 
+            a.setAttribute('download', 'download') 
             document.body.appendChild(a)
             a.click()
             document.body.removeChild(a)
