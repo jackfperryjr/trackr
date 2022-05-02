@@ -36,8 +36,8 @@ When you begin to track a character you'll need to add a little about them; like
 Also, trackr uses default images based on guild and gender to add a little color to the application.  
 Check out the screenshots below!
 
-<img src="Screenshots/main_page.png" alt="Main Page" title="Main Page">
-<img src="Screenshots/all_page.png" alt="All Characters" title="All Characters">
-<img src="Screenshots/character_page.png" alt="Character Graphs" title="Character Graphs">
-<img src="Screenshots/update_page.png" alt="Character Update" title="Character Update">
-<img src="Screenshots/add_page.png" alt="Character Add" title="Character Add">
+<img src="Screenshots/main_page.png" alt="main_page" title="main">
+<img src="Screenshots/all_page.png" alt="all_page" title="all graphs overlaid for each character">
+<img src="Screenshots/character_page.png" alt="character_page" title="character graphs">
+<img src="Screenshots/update_page.png" alt="update_page" title="update character">
+<img src="Screenshots/add_page.png" alt="add_page" title="add character">
