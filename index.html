@@ -61,8 +61,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             getDownloadCount()
         })
-        function countDownload(e) {
-            e.preventDefault()
+        function countDownload() {
             fetch('https://www.moogleapi.com/api/v1/blogs/like/108a2d59-2c4e-487d-b2a3-149ff433ced6', {
             method: 'put'
             }).then(function(response) {
