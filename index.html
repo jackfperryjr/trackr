@@ -13,11 +13,14 @@
 <body>
     <div style="padding:10px;height:60px;font-size:26px;position:sticky;top:0;z-index:5000;background-color:#2F3136;">
         <i class="fas fa-chart-pie" style="color:#5865F2;"></i> trackr 
-        <span style="margin-left:10px;float:right;font-size:16px;"><a class="btn btn-success" href="https://github.com/jackfperryjr/strago/releases/download/v1.0.0/trackrSetup.exe" download><strong>Download for Windows!</strong></a></span>
-        <span style="float:right;font-size:16px;"><a class="btn btn-success" href="https://github.com/jackfperryjr/strago/releases/download/v1.0.0/trackrSetup.dmg" download><strong>Download for Mac!</strong></a></span>
+        <span style="margin-left:10px;float:right;font-size:16px;"><a class="btn btn-success" onClick="countDownloads(e)" href="https://github.com/jackfperryjr/strago/releases/download/v1.0.0/trackrSetup.exe" download><strong>Download for Windows!</strong></a></span>
+        <span style="float:right;font-size:16px;"><a class="btn btn-success" onClick="countDownloads(e)" href="https://github.com/jackfperryjr/strago/releases/download/v1.0.0/trackrSetup.dmg" download><strong>Download for Mac!</strong></a></span>
     </div>
     <div class="text-center">
+        <br>
         <h1><span style="color:#5865F2;">trackr</span> is a character experience tracking app for <a href="https://www.play.net/dr/" target="_blank" style="color:#5865F2;text-decoration:none;">DragonRealms</a></h1>
+        <br>
+        <span id="downloads">0</span>
         <br>
         <div id="carousel" class="carousel slide" data-bs-ride="carousel" style="width:50%;margin:0 auto;">
             <div class="carousel-indicators">
@@ -54,6 +57,29 @@
     </div>
     <script src="wwwroot/lib/jquery/dist/jquery.min.js"></script>
     <script src="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            getDownloadCount()
+        })
+        function countDownloads(e) {
+            e.preventDefault()
+            fetch('https://www.moogleapi.com/api/v1/blogs/like/108a2d59-2c4e-487d-b2a3-149ff433ced6', {
+            method: 'put'
+            }).then(function(response) {
+                if (response.status === 200) {
+                    getDownloadCount()
+                }
+            })
+        }
+
+        function getDownloadCount() {
+            fetch('https://www.moogleapi.com/api/v1/blogs/108a2d59-2c4e-487d-b2a3-149ff433ced6', {
+                method: 'get'
+            }).then(function(response) {
+                document.getElementById('downloads').innerHTML = response
+            })
+        }
+    </script>
     <footer class="text-muted" style="padding:20px;position:fixed;bottom:0;">
         &copy 2022 - trackr
     </footer>
