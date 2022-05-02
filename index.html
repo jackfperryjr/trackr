@@ -76,7 +76,8 @@
             fetch('https://www.moogleapi.com/api/v1/blogs/108a2d59-2c4e-487d-b2a3-149ff433ced6', {
                 method: 'get'
             }).then(function(response) {
-                document.getElementById('downloads').innerHTML = response[0].like
+                console.log(response)
+                document.getElementById('downloads').innerHTML = response.like
             })
         }
     </script>
